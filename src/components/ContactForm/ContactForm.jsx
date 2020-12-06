@@ -53,19 +53,22 @@ export default class ContactForm extends Component {
     e.preventDefault();
     const { name, number } = this.state;
 
-    this.setState({ name: '', number: '' });
-
     if (this.contactValidation()) {
       return;
     }
 
     this.props.onSubmit(name, number);
+    this.reset();
+  };
+
+  reset = () => {
+    this.setState({ name: '', number: '' });
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit} className={s.form}>
-        <label className={s.label}>
+        <label>
           Name
           <input
             type="text"
