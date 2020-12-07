@@ -29,17 +29,8 @@ export default class ContactForm extends Component {
     const { name, number } = this.state;
     const { contacts } = this.props;
 
-    const namesContact = contacts.reduce(
-      (acc, contact) => [...acc, contact.name],
-      [],
-    );
-    const numbersContact = contacts.reduce(
-      (acc, contact) => [...acc, contact.number],
-      [],
-    );
-
-    if (namesContact.includes(name) || numbersContact.includes(number)) {
-      alert(`${name}${number} is already in contacts`);
+    if (contacts.find(contact => name === contact.name)) {
+      alert(`${name} is already in contacts`);
       return true;
     }
 
